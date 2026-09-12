@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - PASSWORD=3Ygwe7oYl8b7
+      - SUDO_PASSWORD=test
+      - PROXY_DOMAIN=${SERVICE_FQDN_CODE_SERVER}
+      - EXTENSIONS_GALLERY={"serviceUrl":"https://marketplace.visualstudio.com/_apis/public/gallery","itemUrl":"https://marketplace.visualstudio.com/items"}
+    volumes:
+      - code-server-data:/home/coder/.local/share/code-server
+      - code-server-config:/home/coder/.config
+      - code-server-projects:/home/coder/project
+
+volumes:
+  code-server-data:
+  code-server-config:
+  code-server-projects:
+  
